@@ -6011,6 +6011,11 @@ rimraf@~2.6.2:
   dependencies:
     glob "^7.1.3"
 
+rn-overlay@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.npmmirror.com/rn-overlay/-/rn-overlay-0.4.0.tgz#d721a3d8bbbf2a97a03722116d44d8b755cc7f76"
+  integrity sha512-Oi/kbRA4SLy3GfmO44q5AT47qVY5RY8DLaiUepUN1lA5uh93FgFBddsQo7IRbYm3VLkCo2Vrpt/Bx2VYHUNGEw==
+
 rsvp@^4.8.4:
   version "4.8.5"
   resolved "https://registry.npmmirror.com/rsvp/-/rsvp-4.8.5.tgz#c8f155311d167f68f21e168df71ec5b083113734"
