@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {SafeAreaView, Text, StyleSheet} from 'react-native';
-
+import {NavigationContainer} from "@react-navigation/native"
 import {
   CodeField,
   Cursor,
@@ -29,23 +29,33 @@ const styles = StyleSheet.create({
 
 const CELL_COUNT = 6;
 
-const Verify = () => {
+const Verify = (params) => {
+  console.log(params)
   const [value, setValue] = useState('');
   const ref = useBlurOnFulfill({value, cellCount: CELL_COUNT});
   const [props, getCellOnLayoutHandler] = useClearByFocusCell({
     value,
     setValue,
   });
+  console.log("props",props)
+  // 完成验证码
+  const handelChange = (props)=>{
+    setValue(props)
+    if(props.length === 6){
+      params.propsVerify(props)
+      // props[5] === 0 ?navigation.navigate('UserInfo'):navigation.navigate('Home')
+    }
+  }
 
   return (
     <SafeAreaView style={styles.root}>
-      <Text style={styles.title}>Verification</Text>
+      {/* <Text style={styles.title}>Verification</Text> */}
       <CodeField
         ref={ref}
         {...props}
         // Use `caretHidden={false}` when users can't paste a text value, because context menu doesn't appear
         value={value}
-        onChangeText={setValue}
+        onChangeText={(value)=>{handelChange(value)}}
         cellCount={CELL_COUNT}
         rootStyle={styles.codeFieldRoot}
         keyboardType="number-pad"

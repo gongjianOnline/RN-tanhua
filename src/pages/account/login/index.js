@@ -12,9 +12,8 @@ import {pxToDp} from '../../../util/stylesKits';
 import validator from '../../../util/validaror';
 import THButton from '../../../components/THButton';
 import Verify from "../../../components/verifyComponent"
-import { ReloadInstructions } from 'react-native/Libraries/NewAppScreen';
 const Toast = Overlay.Toast;
-const Login = () => {
+const Login = (props) => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [errorShow, setErrorShow] = useState(true);
   const [isLogin, setLogin] = useState(true);
@@ -49,6 +48,13 @@ const Login = () => {
       console.log("定时器")
     },3000)
   }
+
+  // 验证码子组件传参
+  const propsVerify = (data)=>{
+    console.log("data",data,data[5])
+    data[5] == 0?props.navigation.navigate("UserInfo"):props.navigation.navigate("Home")
+  }
+
   /**业务代码,登录的代码 */
   const loginContainer = () => {
     return <View>
@@ -100,7 +106,7 @@ const Login = () => {
           <Text>当前号码: 86+{phoneNumber}</Text>
         </View>
         <View>
-          <Verify></Verify>
+          <Verify propsVerify={propsVerify}></Verify>
         </View>
         <View style={{
           width: '100%',
